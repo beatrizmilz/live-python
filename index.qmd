@@ -1,0 +1,66 @@
+---
+title: "Live de python"
+date: "09/Fev/2022"
+format:
+  html:
+    theme: cerulean
+---
+
+## Vendo que dá pra usar os dois
+
+```{r}
+# R
+1 + 1
+```
+
+
+```{python}
+# python
+1 + 1
+```
+
+## Python
+
+```{python}
+# py
+import pandas as pd 
+
+dados_pinguins = pd.read_csv("pinguins.csv", sep = "," )
+
+dados_pinguins.info()
+```
+
+```{python}
+# python
+import seaborn as sns
+sns.relplot(data = dados_pinguins, x = "comprimento_bico", y = "comprimento_nadadeira")
+```
+
+## Sessão compartilhada
+
+```{r}
+# R 
+library(reticulate)
+```
+
+```{r}
+# R
+library(tidyverse)
+py$dados_pinguins |> 
+  ggplot() +
+  geom_point(aes(x = comprimento_bico, y = comprimento_nadadeira)) +
+  theme_light()
+```
+
+```{r}
+# R
+qnt_especies <- py$dados_pinguins |> 
+  dplyr::count(especie)
+```
+
+```{python}
+# Python
+r.qnt_especies
+```
+
+
